@@ -8,11 +8,10 @@ set mouse=a
 set number
 set relativenumber
 
-set autoindent
-" set smartindent
-
 set formatoptions-=r
 set formatoptions-=o
+
+set autoindent
 
 " Set color
 set t_Co=256
@@ -31,8 +30,12 @@ Plug 'preservim/nerdtree' |
             \ Plug 'ryanoasis/vim-devicons'
 Plug 'https://github.com/tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
+Plug 'projekt0n/github-nvim-theme'
 
 call plug#end()
+
+" Theme
+colorscheme github_dark
 
 
 " >>>>>>>>>>>>>>>>>>>>>>>>> NERDTree
@@ -55,7 +58,7 @@ let g:NERDTreeGitStatusUseNerdFonts = 1
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="-"
 
-" >>>>>>>>>>>>>>>>>>>> COC 
+" >>>>>>>>>>>>>>>>>>>> COC
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file.
@@ -77,10 +80,8 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" coc key bindings
+" coc
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-
