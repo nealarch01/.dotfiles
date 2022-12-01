@@ -1,5 +1,4 @@
 " Options
-set background=dark
 set clipboard=unnamedplus
 set completeopt=noinsert,menuone,noselect
 set cursorline
@@ -8,10 +7,12 @@ set mouse=a
 set number
 set relativenumber
 
-set formatoptions-=r
-set formatoptions-=o
+autocmd FileType * set formatoptions-=cro " Disables new line comment for all files
 
 set autoindent
+set smartindent
+
+set nowrap
 
 " Set color
 set t_Co=256
@@ -31,14 +32,26 @@ Plug 'preservim/nerdtree' |
 Plug 'https://github.com/tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'projekt0n/github-nvim-theme'
+Plug 'morhetz/gruvbox'
+Plug 'jacoborus/tender.vim'
+Plug 'arzg/vim-colors-xcode'
+Plug 'numToStr/Comment.nvim'
 
 call plug#end()
 
-" Theme
-colorscheme github_dark
+" comment plugin
+lua require('Comment').setup()
 
+" Theme
+colorscheme xcodedarkhc
+
+" Github Copilot Config
+let g:copilot_node_command = "~/.nvm/versions/node/v16.15.0/bin/node" " Load Copilot with v16.50.0
+" Disables specified filetypes
+let g:copilot_disabled_filetypes = ['markdown', 'xml']
 
 " >>>>>>>>>>>>>>>>>>>>>>>>> NERDTree
+:let g:NERDTreeWinSize = 45
 " Toggles NERDTree sidebar
 nnoremap <C-t> :NERDTreeToggle<CR>
 " Toggles find mode
@@ -54,11 +67,12 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
+
 let g:NERDTreeGitStatusUseNerdFonts = 1
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="-"
 
-" >>>>>>>>>>>>>>>>>>>> COC
+" >>>>>>>>>>>>>>>>>>>> COC 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file.
