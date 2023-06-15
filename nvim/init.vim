@@ -4,13 +4,18 @@ set completeopt=noinsert,menuone,noselect
 set cursorline
 set inccommand=split
 set mouse=a
-set number
-set relativenumber
+set number " Shows the current line number
+" set relativenumber
 
 autocmd FileType * set formatoptions-=cro " Disables new line comment for all files
 
 set autoindent
 set smartindent
+
+ " Scroll up half a page and center cursor
+nnoremap <C-u> <C-u>zz
+ " Scroll down half a page and center cursor
+nnoremap <C-d> <C-d>zz
 
 set nowrap
 
@@ -18,7 +23,6 @@ set nowrap
 set t_Co=256
 
 " Tabs size
-set expandtab
 set shiftwidth=4
 set tabstop=4
 
@@ -36,14 +40,33 @@ Plug 'morhetz/gruvbox'
 Plug 'jacoborus/tender.vim'
 Plug 'arzg/vim-colors-xcode'
 Plug 'numToStr/Comment.nvim'
+Plug 'tomasiser/vim-code-dark'
+Plug 'sainnhe/sonokai'
 
 call plug#end()
 
 " comment plugin
 lua require('Comment').setup()
 
+
+set numberwidth=4
+" Make line numbers white
+autocmd ColorScheme * hi LineNrAbove ctermfg=229
+autocmd ColorScheme * hi LineNrBelow ctermfg=229
+
 " Theme
+" colorscheme github_dark
+" colorscheme codedark
+" colorscheme gruvbox
+" colorscheme tender
+" colorscheme xcodedark
 colorscheme xcodedarkhc
+" colorscheme xcodelight
+" colorscheme xcodelighthc
+" colorscheme sonokai
+
+" Airline theme
+" let g:airline_theme="sonokai"
 
 " Github Copilot Config
 let g:copilot_node_command = "~/.nvm/versions/node/v16.15.0/bin/node" " Load Copilot with v16.50.0
@@ -99,3 +122,5 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+
